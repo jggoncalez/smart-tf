@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruzamento 4.0 - Dashboard</title>
+    <link rel="stylesheet" href="./style/main.css">
+</head>
+<body>
+
+    <header>
+        <h1>🚦 Cruzamento 4.0</h1>
+        <p>Monitoramento em Tempo Real</p>
+    </header>
+
+    <main class="container">
+        <section class="semaforo-container">
+            <div class="poste">
+                <div class="caixa-luz">
+                    <div id="luz-vermelha" class="luz vermelho"></div>
+                    <div id="luz-amarela" class="luz amarelo"></div>
+                    <div id="luz-verde" class="luz verde"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="painel-dados">
+            
+            <div class="status-grid">
+                <div class="card">
+                    <h3>Status do Sistema</h3>
+                    <span id="status-sistema" class="badge online">ONLINE</span>
+                </div>
+                <div class="card">
+                    <h3>Fluxo de Veículos</h3>
+                    <span id="valor-fluxo">Baixo</span>
+                </div>
+                <div class="card">
+                    <h3>Chuva</h3>
+                    <span id="valor-chuva">Não</span>
+                </div>
+            </div>
+
+            <div class="controles-simulacao">
+                <h3>🛠️ Painel de Simulação</h3>
+                
+                <p>Use os botões abaixo para simular situações:</p>
+                <div class="botoes">
+                    <button onclick="simularNormal()">Modo Normal</button>
+                    <button onclick="simularTransito()" class="btn-warn">Trânsito Intenso</button>
+                    <button onclick="simularChuva()" class="btn-info">Chuva Forte</button>
+                    <button onclick="simularFalha()" class="btn-danger">Falha Crítica</button>
+                </div>
+            </div>
+
+            <div class="log-area">
+                <h3>Log de Eventos:</h3>
+                <ul id="lista-logs">
+                    <li>Sistema iniciado...</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
