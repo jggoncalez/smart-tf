@@ -80,7 +80,7 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **Frontend**: [ HTML/CSS ]
 - **Monitoramento**: Prometheus, Grafana
 
-## Politicas de segurança
+## Políticas de Segurança
 
 ### Padronização de Senhas
 - **Segurança das Senhas:** As senhas devem ser robustas, com pelo menos 12 caracteres, incluindo letras e números, e não devem ser previsíveis, como "123456". 
@@ -219,40 +219,46 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 ### Requisitos Funcionais
 
-| Código | Requisito                                                                                                                                   |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| RF01   | O sistema deve alternar automaticamente para modo de operação degradado (amarelo intermitente) quando detectar falha no semáforo principal. |
-| RF02   | O sistema deve armazenar dados localmente (buffer) quando a comunicação IoT cair, sincronizando automaticamente após restabelecimento.      |
-| RF03   | O sistema deve detectar perda de comunicação em até 30 segundos e acionar protocolo de fallback.                                            |
-| RF04   | O sistema deve ajustar temporizações de semáforo dinamicamente baseado no fluxo de veículos detectado.                                      |
-| RF05   | O sistema deve priorizar veículos de emergência quando detectados por sensores específicos.                                                 |
-| RF06   | O sistema deve detectar condições climáticas adversas e aumentar automaticamente tempos de amarelo em 30% durante chuva intensa.            |
-| RF07   | O sistema deve alternar automaticamente para alimentação de backup em até 100ms após queda de energia.                                      |
-| RF08   | O sistema deve implementar autenticação multifator para acesso administrativo.                                                              |
-| RF09   | O sistema deve fornecer dashboard em tempo real mostrando status de todos os componentes do cruzamento.                                     |
-| RF10   | O sistema deve permitir configuração de múltiplos perfis de temporização (pico manhã, pico tarde, noturno, fim de semana).                  |
+| Código | Requisito                                                                                                                                   | Priorização (MoSCoW) |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| RF01   | O sistema deve alternar automaticamente para modo de operação degradado (amarelo intermitente) quando detectar falha no semáforo principal. | Must                 |
+| RF02   | O sistema deve armazenar dados localmente (buffer) quando a comunicação IoT cair, sincronizando automaticamente após restabelecimento.      | Should               |
+| RF03   | O sistema deve detectar perda de comunicação em até 30 segundos e acionar protocolo de fallback.                                            | Must                 |
+| RF04   | O sistema deve ajustar temporizações de semáforo dinamicamente baseado no fluxo de veículos detectado.                                      | Should               |
+| RF05   | O sistema deve priorizar veículos de emergência quando detectados por sensores específicos.                                                 | Should               |
+| RF06   | O sistema deve detectar condições climáticas adversas e aumentar automaticamente tempos de amarelo em 30% durante chuva intensa.            | Could                |
+| RF07   | O sistema deve alternar automaticamente para alimentação de backup em até 100ms após queda de energia.                                      | Must                 |
+| RF08   | O sistema deve implementar autenticação multifator para acesso administrativo.                                                              | Should               |
+| RF09   | O sistema deve fornecer dashboard em tempo real mostrando status de todos os componentes do cruzamento.                                     | Should               |
+| RF10   | O sistema deve permitir configuração de múltiplos perfis de temporização (pico manhã, pico tarde, noturno, fim de semana).                  | Must                 |
+
 
 
 ### Requisitos Não Funcionais
 
-| Código | Requisito                                                                                                             |
-| ------ | --------------------------------------------------------------------------------------------------------------------- |
-| RNF01  | O sistema deve processar dados de sensores com latência máxima de 2 segundos em 99% dos casos.                        |
-| RNF02  | O tempo de resposta para mudança de estado do semáforo deve ser inferior a 500ms após comando.                        |
-| RNF03  | O sistema deve ter disponibilidade mínima de 99,5% (uptime) durante horários de pico (6h-22h).                        |
-| RNF04  | O sistema deve ter disponibilidade mínima de 99,9% considerando todo o período de operação (24/7).                    |
-| RNF05  | O tempo máximo de recuperação (MTTR) após falha crítica deve ser de 15 minutos.                                       |
-| RNF06  | O sistema deve ter taxa de falha máxima de 0,1% para mudanças de estado de semáforo.                                  |
-| RNF07  | Todas as comunicações devem usar criptografia TLS 1.3 ou superior.                                                    |
-| RNF08  | O sistema deve estar em conformidade com a LGPD (Lei Geral de Proteção de Dados).                                     |
-| RNF09  | O código fonte deve ter cobertura mínima de testes automatizados de 80%.                                              |
-| RNF10  | O sistema deve usar arquitetura modular permitindo substituição de componentes sem afetar outros módulos.             |
-| RNF11  | O sistema deve ser capaz de escalar horizontalmente para suportar até 500 cruzamentos sem redesign.                   |
-| RNF12  | A interface administrativa deve ser responsiva e funcionar em dispositivos com resolução mínima de 1024x768.          |
-| RNF13  | O sistema deve ser compatível com navegadores Chrome, Firefox, Edge e Safari (versões dos últimos 2 anos).            |
-| RNF14  | O sistema deve integrar-se com APIs meteorológicas usando protocolo HTTP/REST.                                        |
-| RNF15  | O sistema deve ter Recovery Point Objective (RPO) máximo de 1 hora e Recovery Time Objective (RTO) máximo de 4 horas. |
+| Código | Requisito                                                                                                             | Priorização (MoSCoW) |
+| ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| RNF01  | O sistema deve processar dados de sensores com latência máxima de 2 segundos em 99% dos casos.                        | Must                 |
+| RNF02  | O tempo de resposta para mudança de estado do semáforo deve ser inferior a 500ms após comando.                        | Must                 |
+| RNF03  | O sistema deve ter disponibilidade mínima de 99,5% (uptime) durante horários de pico (6h-22h).                        | Must                 |
+| RNF04  | O sistema deve ter disponibilidade mínima de 99,9% considerando todo o período de operação (24/7).                    | Must                 |
+| RNF05  | O tempo máximo de recuperação (MTTR) após falha crítica deve ser de 15 minutos.                                       | Must                 |
+| RNF06  | O sistema deve ter taxa de falha máxima de 0,1% para mudanças de estado de semáforo.                                  | Must                 |
+| RNF07  | Todas as comunicações devem usar criptografia TLS 1.3 ou superior.                                                    | Should               |
+| RNF08  | O sistema deve estar em conformidade com a LGPD (Lei Geral de Proteção de Dados).                                     | Must                 |
+| RNF09  | O código fonte deve ter cobertura mínima de testes automatizados de 80%.                                              | Should               |
+| RNF10  | O sistema deve usar arquitetura modular permitindo substituição de componentes sem afetar outros módulos.             | Should               |
+| RNF11  | O sistema deve ser capaz de escalar horizontalmente para suportar até 500 cruzamentos sem redesign.                   | Could                |
+| RNF12  | A interface administrativa deve ser responsiva e funcionar em dispositivos com resolução mínima de 1024x768.          | Could                |
+| RNF13  | O sistema deve ser compatível com navegadores Chrome, Firefox, Edge e Safari (versões dos últimos 2 anos).            | Should               |
+| RNF14  | O sistema deve integrar-se com APIs meteorológicas usando protocolo HTTP/REST.                                        | Could                |
+| RNF15  | O sistema deve ter Recovery Point Objective (RPO) máximo de 1 hora e Recovery Time Objective (RTO) máximo de 4 horas. | Must                 |
 
+#### Legenda de Priorização (MoSCoW)
+- **Must-have (M):** Requisitos vitais para o sucesso do projeto e segurança operacional.
+- **Should-have (S):** Requisitos importantes, mas não vitais para a fase inicial.
+- **Could-have (C):** Requisitos desejáveis que melhoram a experiência, mas podem ser deixados para depois.
+- **Won't-have (W):** Requisitos que não serão incluídos nesta entrega (ou ciclo de desenvolvimento).
 
 
 ## Estrutura do Projeto
@@ -276,13 +282,14 @@ Este sistema implementa uma arquitetura moderna baseada em:
 <img width="646" height="331" alt="image" src="https://github.com/user-attachments/assets/4e90f7f1-1a48-495f-bc30-c11ecb4f60c1" />
 
 
-## Erros do sistema 
-| Erro | Descrição do Erro                                                                                                    |  Atuação                                                       |
+## Erros do sistema
+
+| Erro | Descrição do Erro                                                                                                    | Atuação                                                       |
 |------|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-|  18  |Em determinados momentos do dia o fluxo de carros por aquele semáforo pode aumentar, gerando um erro                  | Aumento do tempo do sinal verde                                |
-|  23  |Eles serão usados em cada semáforo para que um técnico/operador possa ter um ponto de acesso a o sistema se necessário| Aumenta o tempo do sinal amarelo                               |
-|  14  |Se houver um erro, mal contato, ou qualquer tipo de falha no sensor o sistema gerará um erro.                         | Semáforo entra em modo de segurança e começa a piscar amarelo. |
-|  03  |Pode ser que em algum momento o semáforo não obtenha mas nenhuma resposta do servidor, gerando um erro.               | Algoritmo continua rodando localmente                          |
+| 18   | Aumento súbito de fluxo de veículos em determinado período, causando congestionamento.                               | Aumentar tempo do sinal verde para aliviar o tráfego.         |
+| 23   | Falta de acesso local para técnicos/operadores (ponto de acesso indisponível).                                      | Acionar fallback de conectividade e notificar a equipe.       |
+| 14   | Falha ou mau contato em sensores, gerando leituras inconsistentes.                                                   | Entrar em modo de segurança (amarelo intermitente) e alertar. |
+| 03   | Perda de comunicação com o servidor, sem resposta remota.                                                            | Operação local autônoma com buffer e sincronização posterior. |
 
 ## Diagrama do IOT
 <img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/360b0863-9710-40d6-adda-3c3aa5443ee0" />
@@ -372,9 +379,8 @@ Para que o seu Front funcione, os seus colegas que estão programando os sensore
 5. Dicionário de Interface (Mapeamento Hardware-Software)
 Para garantir a interoperabilidade entre o firmware (desenvolvido em C++) e a interface de monitoramento, foi estabelecida a seguinte tabela de identificadores. Estes IDs são os pontos de entrada de dados no DOM:
 
-/* ==========================================================================
-   TABELA DE INTEGRAÇÃO: HARDWARE (C++) -> INTERFACE (HTML/JS)
-==========================================================================
+
+## TABELA DE INTEGRAÇÃO: HARDWARE (C++) -> INTERFACE (HTML/JS)
 
 | COMPONENTE (C++)     | ID NO HTML       | AÇÃO DO FRONT-END           | ESTILO / CSS        |
 |----------------------|------------------|-----------------------------|---------------------|
@@ -385,10 +391,8 @@ Para garantir a interoperabilidade entre o firmware (desenvolvido em C++) e a in
 | Sensor de Chuva      | txt-chuva        | Alerta estado climático     | Texto Dinâmico      |
 | Porta Serial         | status-conexao   | Indica conexão física       | .online / .offline  |
 
-==========================================================================
-*/
 
-## Quick Start
+## Início Rápido
 
 ```bash
 # Clone o repositório
@@ -397,6 +401,11 @@ git clone https://github.com/prefeitura/sistema-semaforos-inteligentes.git
 # Entre no diretório
 cd sistema-semaforos-inteligentes
 
-# Acesse o dashboard
-http://localhost:3000
-*
+# Instale dependências (ex.: Node.js)
+# npm install
+
+# Inicie o servidor de desenvolvimento
+# npm start
+
+# Acesse o dashboard:
+# http://localhost:3000
