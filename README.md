@@ -75,7 +75,7 @@ Este sistema implementa uma arquitetura moderna baseada em:
 ## Tecnologias
 
 - **Backend**: [ javascript-ES6/Node.js ]
-- **IoT**: [ MQTT, TCP/IP ]
+- **IoT**: [ MQTT, TCP/IP, C++]
 - **Banco de Dados**: [ MongoDB ]
 - **Frontend**: [ HTML/CSS ]
 - **Monitoramento**: Prometheus, Grafana
