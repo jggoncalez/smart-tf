@@ -16,7 +16,7 @@ Desenvolver uma plataforma robusta, escalável e segura que permita:
 
 ## Histórias de Usuários
 
-Formato utuilziado: Como [usuário], quero [meta] para que [razão]
+Formato Utilizado: Como [usuário], quero [meta] para que [razão]
 
 - Como **pedestre**, quero que o **semáforo detecte minha presença através de sensores** para que **eu não precise esperar o ciclo completo quando não há veículos**
 - Como **motorista**, quero que o **sistema ajuste os tempos de semáforo baseado no tráfego em tempo real** para que **eu possa reduzir meu tempo de deslocamento**
