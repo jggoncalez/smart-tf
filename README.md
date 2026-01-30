@@ -155,7 +155,19 @@ Este sistema implementa uma arquitetura moderna baseada em:
 ├── index.html   
 └── README.md         
 ```
+## Equipamentos de Rede 
+- **Switch** - Será feito o uso de um switch para que haja a conexão de todos os acess point com os servidores. 
+- **Access Point** - Eles serão usados em cada semáforo para que um técnico/operador possa ter um ponto de acesso a o sistema se necessário
+- **Firewall** - para que ninguém entre no sistema e prejudique o funcionamento dos semáforos será feito o uso de um firewall cuja função é proteger o sistema. 
+- **Servidor** - Será feito o uso de 3 servidores com funções diferentes, sendo um para o protocolo DHCP que atribui todos os controladores com um IP próprio. Outro servidor para guardar as informações providas dos semáforos em um banco de dados. Por fim, um servidor que hospedará um sistema com as informações sendo mostradas de forma gráfica.
 
+## Fluxograma do funcionamento da arquitetura IOT
+<img width="581" height="556" alt="image" src="https://github.com/user-attachments/assets/8d4c624e-7e18-4986-a595-b387864c047b" />
+
+## Erros do sistema 
+| Erro | Descrição do Erro                                                                                    |  Atuação                        |
+|------|------------------------------------------------------------------------------------------------------|---------------------------------|
+|  18  | Em determinados momentos do dia o fluxo de carros por aquele semáforo pode aumentar, gerando um erro | Aumento do tempo do sinal verde.|
 ## Quick Start
 
 ```bash
