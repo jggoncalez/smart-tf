@@ -153,14 +153,18 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **Access Point** - Eles serão usados em cada semáforo para que um técnico/operador possa ter um ponto de acesso a o sistema se necessário
 - **Firewall** - para que ninguém entre no sistema e prejudique o funcionamento dos semáforos será feito o uso de um firewall cuja função é proteger o sistema. 
 - **Servidor** - Será feito o uso de 3 servidores com funções diferentes, sendo um para o protocolo DHCP que atribui todos os controladores com um IP próprio. Outro servidor para guardar as informações providas dos semáforos em um banco de dados. Por fim, um servidor que hospedará um sistema com as informações sendo mostradas de forma gráfica.
-
+**Obs:** a topologia utilizada será a estrela, e o protocolo de comunicação é o MQTT ou TCP/IP.
 ## Fluxograma do funcionamento da arquitetura IOT
 <img width="581" height="556" alt="image" src="https://github.com/user-attachments/assets/8d4c624e-7e18-4986-a595-b387864c047b" />
 
 ## Erros do sistema 
-| Erro | Descrição do Erro                                                                                    |  Atuação                        |
-|------|------------------------------------------------------------------------------------------------------|---------------------------------|
-|  18  | Em determinados momentos do dia o fluxo de carros por aquele semáforo pode aumentar, gerando um erro | Aumento do tempo do sinal verde.|
+| Erro | Descrição do Erro                                                                                                    |  Atuação                                                       |
+|------|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+|  18  |Em determinados momentos do dia o fluxo de carros por aquele semáforo pode aumentar, gerando um erro                  | Aumento do tempo do sinal verde                                |
+|  23  |Eles serão usados em cada semáforo para que um técnico/operador possa ter um ponto de acesso a o sistema se necessário| Aumenta o tempo do sinal amarelo                               |
+|  14  |Se houver um erro, mal contato, ou qualquer tipo de falha no sensor o sistema gerará um erro.                         | Semáforo entra em modo de segurança e começa a piscar amarelo. |
+|  03  |Pode ser que em algum momento o semáforo não obtenha mas nenhuma resposta do servidor, gerando um erro.               | Algoritmo continua rodando localmente                          |
+
 ## Quick Start
 
 ```bash
