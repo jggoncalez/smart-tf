@@ -13,9 +13,9 @@ export async function serverMode(flow, weather, updateUI) { // Recebe updateUI
     }
 
     const timeout = {
-        "green": 3000 * greenModifier,
-        "yellow": 1000 * yellowModifier,
-        "red": 3000
+        "green": 5000 * greenModifier,
+        "yellow": 2000 * yellowModifier,
+        "red": 5000
     };
 
     function changeLight() {

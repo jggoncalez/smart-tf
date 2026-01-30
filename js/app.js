@@ -9,7 +9,7 @@ import { flow } from "./modules/flow.js";
 // CONFIG
 // =================
 let server = true; // Simulação de conexão
-let sensor = false; // Simulação de sensor
+let sensor = true; // Simulação de sensor
 // =================
 
 
@@ -77,7 +77,7 @@ async function main() {
         
         // Atualiza o painel de dados (Opcional, mas visualmente bom)
         if (sensor){
-            document.getElementById('txt-fluxo').innerText = `${flowData} v/min`;
+            document.getElementById('txt-fluxo').innerText = `${flowData} %`;
         } else {
             document.getElementById('txt-fluxo').innerText = 'OFF';
         }

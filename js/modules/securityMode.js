@@ -1,4 +1,5 @@
 export async function securityMode(updateUI){
+    // Modo sem sensor
     const colors = ["yellow", "off"];
     let currentIndex = 0;
 
