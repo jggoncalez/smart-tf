@@ -1,17 +1,27 @@
-// js/app.js
+
 import { localMode } from "./modules/localMode.js";
 import { serverMode } from "./modules/serverMode.js";
 import { securityMode } from "./modules/securityMode.js";
 import { weather } from "./modules/weather.js";
 import { flow } from "./modules/flow.js";
 
-const server = true; // Simulação de conexão
-const sensor = true; // Simulação de sensor
+
+// CONFIG
+// =================
+let server = true; // Simulação de conexão
+let sensor = false; // Simulação de sensor
+// =================
+
 
 // Elementos do DOM
 const greenLight = document.getElementById('luz-verde');
 const yellowLight = document.getElementById('luz-amarela');
 const redLight = document.getElementById('luz-vermelha');
+
+// const killServerButton = document.querySelector('[kill = "server"]');
+// const killSensorButton = document.querySelector('[kill = "sensor"]');
+const log = document.querySelector('[log="text"]');
+
 
 // Função auxiliar para resetar todas as luzes para apagado (cinza)
 function turnOffAll() {
@@ -22,32 +32,57 @@ function turnOffAll() {
     redLight.classList.remove('luz-vermelha-ativa');
 }
 
-// Essa é a função CALLBACK que passaremos para os módulos
 function updateTrafficLightUI(color) {
     turnOffAll(); // Apaga tudo antes de acender o novo
 
     if (color === "green") {
         greenLight.classList.add('luz-verde-ativa');
-        }
-        else if (color === "yellow") {
+    }
+    else if (color === "yellow") {
         yellowLight.classList.add('luz-amarela-ativa');
-        }
-        else if (color === "red") {
+    }
+    else if (color === "red") {
         redLight.classList.add('luz-vermelha-ativa');
     }
-    else if (color === "off") {/*nn tem nada motta */}
+    else if (color === "off") {}
 }
+
+// killServerButton.addEventListener('click', () => {
+//     server = !server;
+//     main();
+// })
+// killSensorButton.addEventListener('click', () => {
+//     sensor = !sensor;
+//     main();
+// })
+
 
 async function main() {
     try {
         const weatherData = await weather();
         const flowData = await flow();
+        let weatherTxt;
+
+        if (weatherData == "clear"){
+            weatherTxt = "Ensolarado"
+        }
+        else if (weatherData == "light_rain"){
+            weatherTxt = "Chuva fraca"
+        }
+        else if (weatherData == "strong_rain"){
+            weatherTxt = "Chuva forte"
+        } else {
+            weatherTxt = "Erro fatal"
+        }
         
         // Atualiza o painel de dados (Opcional, mas visualmente bom)
-        document.getElementById('txt-fluxo').innerText = `${flowData} v/min`;
-        document.getElementById('txt-chuva').innerText = weatherData;
-
-        console.log(`Iniciando: Clima=${weatherData}, Fluxo=${flowData}`);
+        if (sensor){
+            document.getElementById('txt-fluxo').innerText = `${flowData} v/min`;
+        } else {
+            document.getElementById('txt-fluxo').innerText = 'OFF';
+        }
+        
+        document.getElementById('txt-chuva').innerText = weatherTxt;
 
         if (server) {
             document.getElementById('status-conexao').innerText = "ONLINE";
@@ -56,13 +91,16 @@ async function main() {
             if (sensor) {
                 // Passamos flow, weather E a função de atualizar a tela
                 await serverMode(flowData, weatherData, updateTrafficLightUI);
+                log.innerText = "SERVIDOR ONLINE: MODO NORMAL"
             }
             else {
                 await securityMode(updateTrafficLightUI);
+                log.innerText = "ERRO: NÃO FOI POSSÍVEL CONECTAR AO SENSOR"
             }
         } else {
-            document.getElementById('status-conexao').innerText = "OFFLINE (MODO LOCAL)";
+            document.getElementById('status-conexao').innerText = "OFFLINE";
             await localMode(updateTrafficLightUI);
+            log.innerText = "SERVIDOR OFFLINE"
         }
 
     } catch (error) {

@@ -1,4 +1,4 @@
-// js/modules/serverMode.js
+
 export async function serverMode(flow, weather, updateUI) { // Recebe updateUI
     const colors = ["green", "yellow", "red"];
     let greenModifier = 1;

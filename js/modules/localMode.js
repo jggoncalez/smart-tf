@@ -1,4 +1,4 @@
-// js/modules/localMode.js
+
 export async function localMode(updateUI) { // 1. Recebe a função de atualizar tela
     const colors = ["green", "yellow", "red"];
     let currentIndex = 0;
