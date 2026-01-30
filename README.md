@@ -235,7 +235,6 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 
 ### Requisitos Não Funcionais
-
 | Código | Requisito                                                                                                             | Priorização (MoSCoW) |
 | ------ | --------------------------------------------------------------------------------------------------------------------- | -------------------- |
 | RNF01  | O sistema deve processar dados de sensores com latência máxima de 2 segundos em 99% dos casos.                        | Must                 |
@@ -254,12 +253,11 @@ Este sistema implementa uma arquitetura moderna baseada em:
 | RNF14  | O sistema deve integrar-se com APIs meteorológicas usando protocolo HTTP/REST.                                        | Could                |
 | RNF15  | O sistema deve ter Recovery Point Objective (RPO) máximo de 1 hora e Recovery Time Objective (RTO) máximo de 4 horas. | Must                 |
 
-#### Legenda de Priorização (MoSCoW)
+### Legenda de Priorização (MoSCoW)
 - **Must-have (M):** Requisitos vitais para o sucesso do projeto e segurança operacional.
 - **Should-have (S):** Requisitos importantes, mas não vitais para a fase inicial.
 - **Could-have (C):** Requisitos desejáveis que melhoram a experiência, mas podem ser deixados para depois.
 - **Won't-have (W):** Requisitos que não serão incluídos nesta entrega (ou ciclo de desenvolvimento).
-
 
 ## Estrutura do Projeto
 
@@ -275,8 +273,12 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 - **Switch:** conecta os access points e os servidores.
 - **Access Point:** disponibiliza um ponto de acesso em cada semáforo para técnicos/operadores.
+- **Roteador:** faz a conexão entre as redes do sistema.
 - **Firewall:** protege o sistema contra acessos não autorizados.
-- **Servidores:** três servidores com funções distintas: 1) DHCP para atribuição de IPs; 2) armazenamento dos dados dos semáforos (banco de dados); 3) hospedagem do sistema e do dashboard.
+- **Servidores:** três servidores com funções distintas:
+- 1) DHCP para atribuição de IPs; 
+- 2) armazenamento dos dados dos semáforos (banco de dados); 
+- 3) hospedagem do sistema e do dashboard.
 **Observação:** a topologia utilizada é em estrela e os protocolos de comunicação são MQTT e/ou TCP/IP.
 ## Diagrama do funcionamento da arquitetura IOT
 <img width="646" height="331" alt="image" src="https://github.com/user-attachments/assets/4e90f7f1-1a48-495f-bc30-c11ecb4f60c1" />
