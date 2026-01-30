@@ -150,18 +150,17 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 ## Políticas de Backup
 
-### Serão incluídos nos backups:
-**Banco de dados MongoDB**
-- Dados de tráfego
-- Logs operacionais
-- Eventos de falha e auditoria
+### Serão incluídos nos backups
+
 **Configurações do sistema**
 - Perfis de temporização
 - Configurações IoT
 - Parâmetros de segurança
+
 **Código da aplicação**
 - Backend
 - Scripts de automação
+
 **Logs críticos**
 - Logs de acesso
 - Logs de segurança (LGPD)
