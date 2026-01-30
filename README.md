@@ -14,6 +14,14 @@ Desenvolver uma plataforma robusta, escalável e segura que permita:
 - **Gestão centralizada** de múltiplos cruzamentos com dashboard administrativo
 - **Conformidade regulatória** com normas ABNT e Código de Trânsito Brasileiro
 
+## Histórias de Usuários
+
+Formato utuilziado: Como [usuário], quero [meta] para que [razão]
+
+- Como **pedestre**, quero que o **semáforo detecte minha presença através de sensores** para que **eu não precise esperar o ciclo completo quando não há veículos**
+- Como **motorista**, quero que o **sistema ajuste os tempos de semáforo baseado no tráfego em tempo real** para que **eu possa reduzir meu tempo de deslocamento**
+- Como **motorista de ambulância**, quero que o **sistema priorize meu trajeto quando acionado** para que **eu possa chegar mais rápido ao destino em emergências**
+
 ## Problema
 
 A Prefeitura identificou problemas críticos em um cruzamento da região central:
@@ -66,11 +74,10 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 ## Tecnologias
 
-- **Backend**: [Python/Node.js/Java - especifique]
-- **IoT**: MQTT, CoAP, HTTP
-- **Banco de Dados**: [PostgreSQL/MongoDB - especifique]
-- **Frontend**: [React/Vue/Angular - especifique]
-- **Infraestrutura**: Docker, Kubernetes
+- **Backend**: [ javascript-ES6/Node.js ]
+- **IoT**: [ MQTT, TCP/IP ]
+- **Banco de Dados**: [ MongoDB ]
+- **Frontend**: [ HTML/CSS ]
 - **Monitoramento**: Prometheus, Grafana
 
 ## Benefícios Esperados
@@ -141,12 +148,12 @@ Este sistema implementa uma arquitetura moderna baseada em:
 ## Estrutura do Projeto
 
 ```
-├── docs/               # Documentação técnica e requisitos
-├── backend/            # API e lógica de negócio
-├── frontend/           # Interface administrativa
-├── iot/                # Firmware para controladores e sensores
-├── infrastructure/     # Scripts Docker, K8s, Terraform
-└── README.md          # Este arquivo
+├── js/ 
+├    └── main.js
+├── style/
+├   └── main.css         
+├── index.html   
+└── README.md         
 ```
 
 ## Quick Start
