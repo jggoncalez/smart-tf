@@ -161,8 +161,9 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **Firewall** - para que ninguém entre no sistema e prejudique o funcionamento dos semáforos será feito o uso de um firewall cuja função é proteger o sistema. 
 - **Servidor** - Será feito o uso de 3 servidores com funções diferentes, sendo um para o protocolo DHCP que atribui todos os controladores com um IP próprio. Outro servidor para guardar as informações providas dos semáforos em um banco de dados. Por fim, um servidor que hospedará um sistema com as informações sendo mostradas de forma gráfica.
 **Obs:** a topologia utilizada será a estrela, e o protocolo de comunicação é o MQTT ou TCP/IP.
-## Fluxograma do funcionamento da arquitetura IOT
-<img width="581" height="556" alt="image" src="https://github.com/user-attachments/assets/8d4c624e-7e18-4986-a595-b387864c047b" />
+## Diagrama do funcionamento da arquitetura IOT
+<img width="646" height="331" alt="image" src="https://github.com/user-attachments/assets/4e90f7f1-1a48-495f-bc30-c11ecb4f60c1" />
+
 
 ## Erros do sistema 
 | Erro | Descrição do Erro                                                                                                    |  Atuação                                                       |
