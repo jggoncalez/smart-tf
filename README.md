@@ -183,6 +183,27 @@ Este sistema implementa uma arquitetura moderna baseada em:
 | **Backup completo**          | **Diário**                                 |
 | **Snapshot pré-manutenção**  | Antes de atualizações ou mudanças críticas |
 
+## Proteção contra engenharia social
+| Área             | Controle                | Descrição                                                        |
+| ---------------- | ----------------------- | ---------------------------------------------------------------- |
+| Conscientização  | Treinamento obrigatório | Treinamento anual sobre engenharia social para todos os usuários |
+| Conscientização  | Simulação de phishing   | Execução periódica de testes de phishing                         |
+| Conscientização  | Campanhas internas      | Divulgação de boas práticas de segurança                         |
+| Autenticação     | MFA obrigatório         | Autenticação multifator para usuários críticos                   |
+| Autenticação     | Gestão de credenciais   | Proibição de compartilhamento de senhas                          |
+| Autenticação     | Bloqueio automático     | Bloqueio após múltiplas tentativas de login                      |
+| Procedimentos    | Solicitações críticas   | Alterações sensíveis exigem aprovação formal                     |
+| Procedimentos    | Validação de identidade | Confirmação de identidade em acessos emergenciais                |
+| Phishing         | Filtros de e-mail       | Uso de filtros antiphishing                                      |
+| Phishing         | Bloqueio de links       | Bloqueio de links e anexos suspeitos                             |
+| Segurança Física | Controle de acesso      | Acesso físico restrito aos servidores                            |
+| Segurança Física | Identificação           | Identificação obrigatória de visitantes                          |
+| Monitoramento    | Logs de acesso          | Registro de tentativas de acesso suspeitas                       |
+| Monitoramento    | Alertas automáticos     | Alertas para atividades anômalas                                 |
+| Incidentes       | Canal de reporte        | Canal definido para reporte de incidentes                        |
+| Incidentes       | Resposta imediata       | Bloqueio e reset de credenciais após incidentes                  |
+| Conformidade     | LGPD                    | Aderência ao Art. 46 da LGPD                                     |
+| Conformidade     | ISO 27001               | Controles alinhados à ISO/IEC 27001                              |
 
 ## Benefícios Esperados
 
@@ -191,6 +212,9 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **100% de conformidade** com normas de segurança e regulamentação
 - **Economia de até 30%** em custos operacionais através de manutenção preventiva
 - **Redução de 25%** em emissões de CO₂ através de otimização de fluxo
+
+
+
 
 ## Requisitos do Sistema
 
