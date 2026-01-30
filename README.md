@@ -305,19 +305,8 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - 2) armazenamento dos dados dos semáforos (banco de dados); 
 - 3) hospedagem do sistema e do dashboard.
 **Observação:** a topologia utilizada é em estrela e os protocolos de comunicação são MQTT e/ou TCP/IP.
-## Diagrama do funcionamento da arquitetura IOT
-<img width="646" height="331" alt="image" src="https://github.com/user-attachments/assets/4e90f7f1-1a48-495f-bc30-c11ecb4f60c1" />
 
-**Observação:** A topologia utilizada é em estrela e os protocolos de comunicação são MQTT e/ou TCP/IP.
 
-## Erros do sistema
-
-| Erro | Descrição do Erro                                                                                                    | Atuação                                                       |
-|------|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| 18   | Aumento súbito de fluxo de veículos em determinado período, causando congestionamento.                               | Aumentar tempo do sinal verde para aliviar o tráfego.         |
-| 23   | Falta de acesso local para técnicos/operadores (ponto de acesso indisponível).                                      | Acionar fallback de conectividade e notificar a equipe.       |
-| 14   | Falha ou mau contato em sensores, gerando leituras inconsistentes.                                                   | Entrar em modo de segurança (amarelo intermitente) e alertar. |
-| 03   | Perda de comunicação com o servidor, sem resposta remota.                                                            | Operação local autônoma com buffer e sincronização posterior. |
 
 ## Diagrama da Arquitetura IoT
 
