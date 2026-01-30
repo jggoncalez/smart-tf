@@ -94,8 +94,8 @@ async function main() {
                 log.innerText = "SERVIDOR ONLINE: MODO NORMAL"
             }
             else {
-                await securityMode(updateTrafficLightUI);
                 log.innerText = "ERRO: NÃO FOI POSSÍVEL CONECTAR AO SENSOR"
+                await securityMode(updateTrafficLightUI);
             }
         } else {
             document.getElementById('status-conexao').innerText = "OFFLINE";
