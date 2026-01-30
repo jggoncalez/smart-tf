@@ -172,6 +172,12 @@ Este sistema implementa uma arquitetura moderna baseada em:
 |  14  |Se houver um erro, mal contato, ou qualquer tipo de falha no sensor o sistema gerará um erro.                         | Semáforo entra em modo de segurança e começa a piscar amarelo. |
 |  03  |Pode ser que em algum momento o semáforo não obtenha mas nenhuma resposta do servidor, gerando um erro.               | Algoritmo continua rodando localmente                          |
 
+## Diagrama do IOT
+<img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/360b0863-9710-40d6-adda-3c3aa5443ee0" />
+<img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/d6baefd7-92e8-400e-93c1-208dd5c09afb" />
+<img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/dddbdc31-613b-422d-9da4-ad84f1c924b3" />
+
+
 ## Quick Start
 
 ```bash
