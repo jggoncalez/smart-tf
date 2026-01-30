@@ -1,4 +1,4 @@
-export async function securityMode(){
+export async function securityMode(updateUI){
     const colors = ["yellow", "off"];
     let currentIndex = 0;
 
@@ -12,6 +12,8 @@ export async function securityMode(){
         console.log(`Sinal: ${currentColor}`);
         
         currentIndex = (currentIndex + 1) % colors.length;
+
+        if (updateUI) updateUI(currentColor);
         
         setTimeout(changeLight, timeout[currentColor]);
 

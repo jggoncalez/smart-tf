@@ -1,12 +1,5 @@
-/*
-    fluxo alto -> aumentar tempo do verde
-    chuva forte -> reduzir velocidade e aumentar tempo do amarelo
-    sensor falhar -> acionar modo segurança
-    servidor cair -> rodar local
-*/
-
-
-export async function serverMode(flow, weather){
+// js/modules/serverMode.js
+export async function serverMode(flow, weather, updateUI) { // Recebe updateUI
     const colors = ["green", "yellow", "red"];
     let greenModifier = 1;
     let yellowModifier = 1;
@@ -27,13 +20,14 @@ export async function serverMode(flow, weather){
 
     function changeLight() {
         const currentColor = colors[currentIndex];
-        console.log(`Sinal: ${currentColor}`);
+        console.log(`Sinal Servidor: ${currentColor}`);
+        
+        // Atualiza a tela
+        if (updateUI) updateUI(currentColor);
         
         currentIndex = (currentIndex + 1) % colors.length;
         
         setTimeout(changeLight, timeout[currentColor]);
-
-        return currentColor;
     }
     changeLight();
 }

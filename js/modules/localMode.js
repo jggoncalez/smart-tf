@@ -1,4 +1,5 @@
-export async function localMode() {
+// js/modules/localMode.js
+export async function localMode(updateUI) { // 1. Recebe a função de atualizar tela
     const colors = ["green", "yellow", "red"];
     let currentIndex = 0;
 
@@ -10,13 +11,15 @@ export async function localMode() {
 
     function changeLight() {
         const currentColor = colors[currentIndex];
-        console.log(`Sinal: ${currentColor}`);
+        console.log(`Sinal Local: ${currentColor}`);
         
+        // 2. Chama a função que atualiza o HTML
+        if (updateUI) updateUI(currentColor);
+
         currentIndex = (currentIndex + 1) % colors.length;
         
         setTimeout(changeLight, timeout[currentColor]);
-
-        return currentColor;
     }
-    changeLight();
+    
+    changeLight(); // Inicia o loop
 }
