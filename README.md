@@ -14,6 +14,14 @@ Desenvolver uma plataforma robusta, escalável e segura que permita:
 - **Gestão centralizada** de múltiplos cruzamentos com dashboard administrativo
 - **Conformidade regulatória** com normas ABNT e Código de Trânsito Brasileiro
 
+## Histórias de Usuários
+
+Formato Utilizado: Como [usuário], quero [meta] para que [razão]
+
+- Como **pedestre**, quero que o **semáforo detecte minha presença através de sensores** para que **eu não precise esperar o ciclo completo quando não há veículos**
+- Como **motorista**, quero que o **sistema ajuste os tempos de semáforo baseado no tráfego em tempo real** para que **eu possa reduzir meu tempo de deslocamento**
+- Como **motorista de ambulância**, quero que o **sistema priorize meu trajeto quando acionado** para que **eu possa chegar mais rápido ao destino em emergências**
+
 ## Problema
 
 A Prefeitura identificou problemas críticos em um cruzamento da região central:
@@ -66,11 +74,10 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 ## Tecnologias
 
-- **Backend**: [Python/Node.js/Java - especifique]
-- **IoT**: MQTT, CoAP, HTTP
-- **Banco de Dados**: [PostgreSQL/MongoDB - especifique]
-- **Frontend**: [React/Vue/Angular - especifique]
-- **Infraestrutura**: Docker, Kubernetes
+- **Backend**: [ javascript-ES6/Node.js ]
+- **IoT**: [ MQTT, TCP/IP, C++]
+- **Banco de Dados**: [ MongoDB ]
+- **Frontend**: [ HTML/CSS ]
 - **Monitoramento**: Prometheus, Grafana
 
 ## Benefícios Esperados
@@ -141,12 +148,12 @@ Este sistema implementa uma arquitetura moderna baseada em:
 ## Estrutura do Projeto
 
 ```
-├── docs/               # Documentação técnica e requisitos
-├── backend/            # API e lógica de negócio
-├── frontend/           # Interface administrativa
-├── iot/                # Firmware para controladores e sensores
-├── infrastructure/     # Scripts Docker, K8s, Terraform
-└── README.md          # Este arquivo
+├── js/ 
+├    └── main.js
+├── style/
+├   └── main.css         
+├── index.html   
+└── README.md         
 ```
 ## Equipamentos de Rede 
 - **Switch** - Será feito o uso de um switch para que haja a conexão de todos os acess point com os servidores. 
@@ -154,8 +161,9 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **Firewall** - para que ninguém entre no sistema e prejudique o funcionamento dos semáforos será feito o uso de um firewall cuja função é proteger o sistema. 
 - **Servidor** - Será feito o uso de 3 servidores com funções diferentes, sendo um para o protocolo DHCP que atribui todos os controladores com um IP próprio. Outro servidor para guardar as informações providas dos semáforos em um banco de dados. Por fim, um servidor que hospedará um sistema com as informações sendo mostradas de forma gráfica.
 **Obs:** a topologia utilizada será a estrela, e o protocolo de comunicação é o MQTT ou TCP/IP.
-## Fluxograma do funcionamento da arquitetura IOT
-<img width="581" height="556" alt="image" src="https://github.com/user-attachments/assets/8d4c624e-7e18-4986-a595-b387864c047b" />
+## Diagrama do funcionamento da arquitetura IOT
+<img width="646" height="331" alt="image" src="https://github.com/user-attachments/assets/4e90f7f1-1a48-495f-bc30-c11ecb4f60c1" />
+
 
 ## Erros do sistema 
 | Erro | Descrição do Erro                                                                                                    |  Atuação                                                       |
@@ -164,6 +172,12 @@ Este sistema implementa uma arquitetura moderna baseada em:
 |  23  |Eles serão usados em cada semáforo para que um técnico/operador possa ter um ponto de acesso a o sistema se necessário| Aumenta o tempo do sinal amarelo                               |
 |  14  |Se houver um erro, mal contato, ou qualquer tipo de falha no sensor o sistema gerará um erro.                         | Semáforo entra em modo de segurança e começa a piscar amarelo. |
 |  03  |Pode ser que em algum momento o semáforo não obtenha mas nenhuma resposta do servidor, gerando um erro.               | Algoritmo continua rodando localmente                          |
+
+## Diagrama do IOT
+<img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/360b0863-9710-40d6-adda-3c3aa5443ee0" />
+<img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/d6baefd7-92e8-400e-93c1-208dd5c09afb" />
+<img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/dddbdc31-613b-422d-9da4-ad84f1c924b3" />
+
 
 ## Quick Start
 
