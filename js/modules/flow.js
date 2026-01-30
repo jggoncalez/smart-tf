@@ -1,3 +1,5 @@
-export function flow() {
-    return Math.floor(Math.random() * 10);
+export async function flow() {
+    
+    setTimeout(flow(), 10000);
+    return Math.floor(Math.random() * 100);
 }

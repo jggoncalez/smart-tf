@@ -1,11 +1,11 @@
-export function localMode() {
+export async function localMode() {
     const colors = ["green", "yellow", "red"];
     let currentIndex = 0;
 
     const timeout = {
-        "green": 3000,
-        "yellow": 1000,
-        "red": 3000
+        "green": 5000,
+        "yellow": 2000,
+        "red": 5000
     };
 
     function changeLight() {
