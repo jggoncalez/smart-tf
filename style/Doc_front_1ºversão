@@ -1,0 +1,91 @@
+📄 Documentação Técnica: Interface de Monitoramento (Front-end)
+1. Resumo do Sistema
+A interface do Cruzamento 4.0 foi desenvolvida para atuar como um dashboard de telemetria em tempo real. O objetivo principal é traduzir sinais elétricos (sensores) e estados lógicos (atuadores) vindos de um Arduino para uma interface visual intuitiva e responsiva.
+
+2. Pontos Chave do Código (HTML/CSS)
+A. Gerenciamento de Estados do Semáforo
+A interface utiliza o conceito de Classes de Ativação. O semáforo não é apenas uma imagem, mas um conjunto de elementos DOM que reagem a mudanças de classe CSS.
+
+Trecho Chave:
+
+CSS
+/* Definição do estado 'ligado' via CSS */
+.luz.vermelho.ativa {
+    background-color: var(--neon-red);
+    box-shadow: 0 0 40px var(--neon-red);
+    border-color: #fff;
+}
+Por que isso é importante? Isso permite que o desenvolvedor Back-end apenas alterne a classe .ativa no JavaScript para que o efeito visual de "luz acesa" ocorra instantaneamente.
+
+B. Arquitetura de Recebimento de Dados (IDs de Sensores)
+Para integrar com os sensores físicos (Ultrassônico e Chuva), foram definidos IDs específicos que servem como "endereços" para a injeção de dados.
+
+Trecho Chave:
+
+HTML
+<div class="card">
+    <h3>Fluxo (Ultrassônico)</h3>
+    <span id="txt-fluxo">0 v/min</span> </div>
+<div class="card">
+    <h3>Sensor de Chuva</h3>
+    <span id="txt-chuva">Inativo</span> </div>
+C. Monitoramento de Conectividade
+A interface inclui um sistema de feedback visual para o status da comunicação serial/rede entre o navegador e o servidor C#.
+
+Trecho Chave:
+
+HTML
+<span id="status-conexao" class="badge offline">AGUARDANDO BACK-END</span>
+3. Fluxo de Comunicação (Contrato de Interface)
+Para o correto funcionamento do sistema, o Front-end estabelece o seguinte fluxo de dados:
+
+Entrada (Input): O C# lê a porta serial do Arduino e envia um sinal para a função JS.
+
+Processamento (Logic): O JavaScript identifica qual sensor enviou o dado através do ID correspondente.
+
+Saída (Output): O DOM é manipulado para refletir o estado real do hardware (ex: mudar o texto do fluxo ou acender o LED virtual).
+
+4. Monitoramento de Fluxo Serial (C++ para Web)
+A área de logs foi projetada para funcionar como um Monitor Serial Integrado. Como o código dos sensores será escrito em C++, essa área é vital para debugar o que o Arduino está transmitindo via porta USB/Serial diretamente para a interface.
+
+Trecho Chave (HTML):
+
+HTML
+<div class="log-area">
+    <h3>Log de Eventos:</h3>
+    <ul id="lista-logs">
+        <li>Aguardando conexão com Arduino (C++)...</li>
+    </ul>
+</div>
+
+Finalidade Técnica: Permite visualizar as strings brutas enviadas pelas funções Serial.print() ou Serial.println() do C++. Isso facilita a validação rápida de:
+
+Leituras de distância do sensor ultrassônico.
+
+Mudanças de estado lógico (High/Low) enviadas pelo hardware.
+
+Confirmação de recebimento de comandos de interrupção.
+
+Comportamento de Interface: O log utiliza display: flex com flex-direction: column-reverse (ou uso de prepend no JS) para garantir que o evento mais recente do hardware seja sempre o primeiro da lista, simulando o comportamento de um terminal de depuração profissional.
+
+🛠️ Tabela de Integração Rápida (Para seus colegas de C++)
+Para que o seu Front funcione, os seus colegas que estão programando os sensores precisam saber quais nomes (IDs) você deu aos elementos. Você pode entregar esta tabela para eles
+
+5. Dicionário de Interface (Mapeamento Hardware-Software)
+Para garantir a interoperabilidade entre o firmware (desenvolvido em C++) e a interface de monitoramento, foi estabelecida a seguinte tabela de identificadores. Estes IDs são os pontos de entrada de dados no DOM:
+
+/* ==========================================================================
+   TABELA DE INTEGRAÇÃO: HARDWARE (C++) -> INTERFACE (HTML/JS)
+==========================================================================
+
+| COMPONENTE (C++)     | ID NO HTML       | AÇÃO DO FRONT-END           | ESTILO / CSS        |
+|----------------------|------------------|-----------------------------|---------------------|
+| LED Vermelho         | luz-vermelha     | Ativa brilho de parada      | .vermelho.ativa     |
+| LED Amarelo          | luz-amarela      | Ativa brilho de atenção     | .amarelo.ativa      |
+| LED Verde            | luz-verde        | Ativa brilho de passagem    | .verde.ativa       |
+| Sensor Ultrassônico  | txt-fluxo        | Atualiza valor de tráfego   | Texto Dinâmico      |
+| Sensor de Chuva      | txt-chuva        | Alerta estado climático     | Texto Dinâmico      |
+| Porta Serial         | status-conexao   | Indica conexão física       | .online / .offline  |
+
+==========================================================================
+*/
