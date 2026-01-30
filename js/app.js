@@ -63,13 +63,13 @@ async function main() {
         const flowData = await flow();
         let weatherTxt;
 
-        if (weatherData == "clear"){
+        if (weatherData === "clear"){
             weatherTxt = "Ensolarado"
         }
-        else if (weatherData == "light_rain"){
+        else if (weatherData === "light_rain"){
             weatherTxt = "Chuva fraca"
         }
-        else if (weatherData == "strong_rain"){
+        else if (weatherData === "strong_rain"){
             weatherTxt = "Chuva forte"
         } else {
             weatherTxt = "Erro fatal"
