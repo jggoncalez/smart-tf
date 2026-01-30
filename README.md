@@ -179,6 +179,13 @@ Este sistema implementa uma arquitetura moderna baseada em:
 <img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/dddbdc31-613b-422d-9da4-ad84f1c924b3" />
 
 
+## Comparaão entre Windows Server e Ubuntu Server
+| Item         | Windows Server                              | Ubuntu Server                                           |
+|--------------|---------------------------------------------|---------------------------------------------------------|
+|Custo         |Licença paga (≈ R$ 2.500 por servidor, dependendo da edição) | Gratuito (open source)                  |
+|Segurança     |Boa, com recursos nativos (Defender, AD, GPO)|Excelente, com atualizações frequentes e forte comunidade|
+|Suporte a IOT |Limitado e menos flexível                    |Excelente compatibilidade com MQTT, Docker, Node.js e C++|
+
 ## Quick Start
 
 ```bash
