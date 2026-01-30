@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O **Sistema Inteligente de Gerenciamento de Semáforos** é uma solução IoT completa desenvolvida para modernizar e otimizar o controle de tráfego urbano. Este projeto surge da necessidade de resolver problemas críticos identificados em cruzamentos urbanos, onde falhas de equipamento, quedas de comunicação e falta de resiliência operacional comprometem a segurança e fluidez do trânsito.
+O **Sistema Inteligente de Gerenciamento de Semáforos** é uma solução IoT completa desenvolvida para modernizar e otimizar o controle de tráfego urbano. Este projeto surgiu da necessidade de resolver problemas críticos identificados em cruzamentos, onde falhas de equipamento, quedas de comunicação e falta de resiliência operacional comprometem a segurança e a fluidez do trânsito.
 
 ## Objetivo
 
@@ -88,7 +88,7 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **Autenticação em Dois Fatores (2FA): Utilize 2FA para aumentar a segurança, exigindo um segundo método de verificação. 
 - **Conscientização:** Promova a conscientização sobre a privacidade dos dados e a importância do tratamento adequado dos dados pessoais.
 
-## Padronização de Acessos - Conformidade LGPD
+## Padronização de Acessos e Conformidade com a LGPD
 
 ### 1. Classificação de Usuários e Níveis de Acesso
 
@@ -219,75 +219,59 @@ Este sistema implementa uma arquitetura moderna baseada em:
 
 ### Requisitos Funcionais
 
-**RF01** - O sistema deve alternar automaticamente para modo de operação degradado (amarelo intermitente) quando detectar falha no semáforo principal.
+| Código | Requisito                                                                                                                                   |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| RF01   | O sistema deve alternar automaticamente para modo de operação degradado (amarelo intermitente) quando detectar falha no semáforo principal. |
+| RF02   | O sistema deve armazenar dados localmente (buffer) quando a comunicação IoT cair, sincronizando automaticamente após restabelecimento.      |
+| RF03   | O sistema deve detectar perda de comunicação em até 30 segundos e acionar protocolo de fallback.                                            |
+| RF04   | O sistema deve ajustar temporizações de semáforo dinamicamente baseado no fluxo de veículos detectado.                                      |
+| RF05   | O sistema deve priorizar veículos de emergência quando detectados por sensores específicos.                                                 |
+| RF06   | O sistema deve detectar condições climáticas adversas e aumentar automaticamente tempos de amarelo em 30% durante chuva intensa.            |
+| RF07   | O sistema deve alternar automaticamente para alimentação de backup em até 100ms após queda de energia.                                      |
+| RF08   | O sistema deve implementar autenticação multifator para acesso administrativo.                                                              |
+| RF09   | O sistema deve fornecer dashboard em tempo real mostrando status de todos os componentes do cruzamento.                                     |
+| RF10   | O sistema deve permitir configuração de múltiplos perfis de temporização (pico manhã, pico tarde, noturno, fim de semana).                  |
 
-**RF02** - O sistema deve armazenar dados localmente (buffer) quando a comunicação IoT cair, sincronizando automaticamente após restabelecimento.
-
-**RF03** - O sistema deve detectar perda de comunicação em até 30 segundos e acionar protocolo de fallback.
-
-**RF04** - O sistema deve ajustar temporizações de semáforo dinamicamente baseado no fluxo de veículos detectado.
-
-**RF05** - O sistema deve priorizar veículos de emergência quando detectados por sensores específicos.
-
-**RF06** - O sistema deve detectar condições climáticas adversas e aumentar automaticamente tempos de amarelo em 30% durante chuva intensa.
-
-**RF07** - O sistema deve alternar automaticamente para alimentação de backup em até 100ms após queda de energia.
-
-**RF08** - O sistema deve implementar autenticação multifator para acesso administrativo.
-
-**RF09** - O sistema deve fornecer dashboard em tempo real mostrando status de todos os componentes do cruzamento.
-
-**RF10** - O sistema deve permitir configuração de múltiplos perfis de temporização (pico manhã, pico tarde, noturno, fim de semana).
 
 ### Requisitos Não Funcionais
 
-**RNF01** - O sistema deve processar dados de sensores com latência máxima de 2 segundos em 99% dos casos.
+| Código | Requisito                                                                                                             |
+| ------ | --------------------------------------------------------------------------------------------------------------------- |
+| RNF01  | O sistema deve processar dados de sensores com latência máxima de 2 segundos em 99% dos casos.                        |
+| RNF02  | O tempo de resposta para mudança de estado do semáforo deve ser inferior a 500ms após comando.                        |
+| RNF03  | O sistema deve ter disponibilidade mínima de 99,5% (uptime) durante horários de pico (6h-22h).                        |
+| RNF04  | O sistema deve ter disponibilidade mínima de 99,9% considerando todo o período de operação (24/7).                    |
+| RNF05  | O tempo máximo de recuperação (MTTR) após falha crítica deve ser de 15 minutos.                                       |
+| RNF06  | O sistema deve ter taxa de falha máxima de 0,1% para mudanças de estado de semáforo.                                  |
+| RNF07  | Todas as comunicações devem usar criptografia TLS 1.3 ou superior.                                                    |
+| RNF08  | O sistema deve estar em conformidade com a LGPD (Lei Geral de Proteção de Dados).                                     |
+| RNF09  | O código fonte deve ter cobertura mínima de testes automatizados de 80%.                                              |
+| RNF10  | O sistema deve usar arquitetura modular permitindo substituição de componentes sem afetar outros módulos.             |
+| RNF11  | O sistema deve ser capaz de escalar horizontalmente para suportar até 500 cruzamentos sem redesign.                   |
+| RNF12  | A interface administrativa deve ser responsiva e funcionar em dispositivos com resolução mínima de 1024x768.          |
+| RNF13  | O sistema deve ser compatível com navegadores Chrome, Firefox, Edge e Safari (versões dos últimos 2 anos).            |
+| RNF14  | O sistema deve integrar-se com APIs meteorológicas usando protocolo HTTP/REST.                                        |
+| RNF15  | O sistema deve ter Recovery Point Objective (RPO) máximo de 1 hora e Recovery Time Objective (RTO) máximo de 4 horas. |
 
-**RNF02** - O tempo de resposta para mudança de estado do semáforo deve ser inferior a 500ms após comando.
-
-**RNF03** - O sistema deve ter disponibilidade mínima de 99,5% (uptime) durante horários de pico (6h-22h).
-
-**RNF04** - O sistema deve ter disponibilidade mínima de 99,9% considerando todo o período de operação (24/7).
-
-**RNF05** - O tempo máximo de recuperação (MTTR) após falha crítica deve ser de 15 minutos.
-
-**RNF06** - O sistema deve ter taxa de falha máxima de 0,1% para mudanças de estado de semáforo.
-
-**RNF07** - Todas as comunicações devem usar criptografia TLS 1.3 ou superior.
-
-**RNF08** - O sistema deve estar em conformidade com a LGPD (Lei Geral de Proteção de Dados).
-
-**RNF09** - O código fonte deve ter cobertura mínima de testes automatizados de 80%.
-
-**RNF10** - O sistema deve usar arquitetura modular permitindo substituição de componentes sem afetar outros módulos.
-
-**RNF11** - O sistema deve ser capaz de escalar horizontalmente para suportar até 500 cruzamentos sem redesign.
-
-**RNF12** - A interface administrativa deve ser responsiva e funcionar em dispositivos com resolução mínima de 1024x768.
-
-**RNF13** - O sistema deve ser compatível com navegadores Chrome, Firefox, Edge e Safari (versões dos últimos 2 anos).
-
-**RNF14** - O sistema deve integrar-se com APIs meteorológicas usando protocolo HTTP/REST.
-
-**RNF15** - O sistema deve ter Recovery Point Objective (RPO) máximo de 1 hora e Recovery Time Objective (RTO) máximo de 4 horas.
 
 
 ## Estrutura do Projeto
 
 ```
-├── js/ 
-├    └── main.js
+├── js/
+│   └── main.js
 ├── style/
-├   └── main.css         
-├── index.html   
-└── README.md         
+│   └── main.css
+├── index.html
+└── README.md
 ```
-## Equipamentos de Rede 
-- **Switch** - Será feito o uso de um switch para que haja a conexão de todos os acess point com os servidores. 
-- **Access Point** - Eles serão usados em cada semáforo para que um técnico/operador possa ter um ponto de acesso a o sistema se necessário
-- **Firewall** - para que ninguém entre no sistema e prejudique o funcionamento dos semáforos será feito o uso de um firewall cuja função é proteger o sistema. 
-- **Servidor** - Será feito o uso de 3 servidores com funções diferentes, sendo um para o protocolo DHCP que atribui todos os controladores com um IP próprio. Outro servidor para guardar as informações providas dos semáforos em um banco de dados. Por fim, um servidor que hospedará um sistema com as informações sendo mostradas de forma gráfica.
-**Obs:** a topologia utilizada será a estrela, e o protocolo de comunicação é o MQTT ou TCP/IP.
+## Equipamentos de Rede
+
+- **Switch:** conecta os access points e os servidores.
+- **Access Point:** disponibiliza um ponto de acesso em cada semáforo para técnicos/operadores.
+- **Firewall:** protege o sistema contra acessos não autorizados.
+- **Servidores:** três servidores com funções distintas: 1) DHCP para atribuição de IPs; 2) armazenamento dos dados dos semáforos (banco de dados); 3) hospedagem do sistema e do dashboard.
+**Observação:** a topologia utilizada é em estrela e os protocolos de comunicação são MQTT e/ou TCP/IP.
 ## Diagrama do funcionamento da arquitetura IOT
 <img width="646" height="331" alt="image" src="https://github.com/user-attachments/assets/4e90f7f1-1a48-495f-bc30-c11ecb4f60c1" />
 
@@ -306,14 +290,103 @@ Este sistema implementa uma arquitetura moderna baseada em:
 <img width="907" height="708" alt="image" src="https://github.com/user-attachments/assets/dddbdc31-613b-422d-9da4-ad84f1c924b3" />
 
 
-## Comparaão entre Windows Server e Ubuntu Server
+## Comparação entre Windows Server e Ubuntu Server
+
 | Item         | Windows Server                              | Ubuntu Server                                           |
 |--------------|---------------------------------------------|---------------------------------------------------------|
 |Custo         |Licença paga (≈ R$ 2.500 por servidor, dependendo da edição) | Gratuito (open source)                  |
 |Segurança     |Boa, com recursos nativos (Defender, AD, GPO)|Excelente, com atualizações frequentes e forte comunidade|
 |Suporte a IOT |Limitado e menos flexível                    |Excelente compatibilidade com MQTT, Docker, Node.js e C++|
 
-## 
+##  Interface de Monitoramento (Front-end)
+
+### 1. Resumo do Sistema
+- A interface do Cruzamento 4.0 foi desenvolvida para atuar como um dashboard de telemetria em tempo real. O objetivo principal é traduzir sinais elétricos (sensores) e estados lógicos (atuadores) vindos de um Arduino para uma interface visual intuitiva e responsiva.
+
+### 2. Pontos Chave do Código (HTML/CSS)
+- **Gerenciamento de Estados do Semáforo**
+A interface utiliza o conceito de Classes de Ativação. O semáforo não é apenas uma imagem, mas um conjunto de elementos DOM que reagem a mudanças de classe CSS.
+
+### Trecho Chave:
+
+#### CSS
+**/* Definição do estado 'ligado' via CSS */**
+.luz.vermelho.ativa {
+    background-color: var(--neon-red);
+    box-shadow: 0 0 40px var(--neon-red);
+    border-color: #fff;
+}
+- Por que isso é importante? Isso permite que o desenvolvedor Back-end apenas alterne a classe .ativa no JavaScript para que o efeito visual de "luz acesa" ocorra instantaneamente.
+
+- Arquitetura de Recebimento de Dados (IDs de Sensores)
+Para integrar com os sensores físicos (Ultrassônico e Chuva), foram definidos IDs específicos que servem como "endereços" para a injeção de dados.
+
+
+#### HTML
+<div class="card">
+    <h3>Fluxo (Ultrassônico)</h3>
+    <span id="txt-fluxo">0 v/min</span> </div>
+<div class="card">
+    <h3>Sensor de Chuva</h3>
+    <span id="txt-chuva">Inativo</span> </div>
+- Monitoramento de Conectividade
+A interface inclui um sistema de feedback visual para o status da comunicação serial/rede entre o navegador e o servidor C#.
+
+
+#### HTML
+<span id="status-conexao" class="badge offline">AGUARDANDO BACK-END</span>
+**Fluxo de Comunicação (Contrato de Interface)**
+Para o correto funcionamento do sistema, o Front-end estabelece o seguinte fluxo de dados:
+
+Entrada (Input): O C# lê a porta serial do Arduino e envia um sinal para a função JS.
+
+Processamento (Logic): O JavaScript identifica qual sensor enviou o dado através do ID correspondente.
+
+Saída (Output): O DOM é manipulado para refletir o estado real do hardware (ex: mudar o texto do fluxo ou acender o LED virtual).
+
+4. Monitoramento de Fluxo Serial (C++ para Web)
+A área de logs foi projetada para funcionar como um Monitor Serial Integrado. Como o código dos sensores será escrito em C++, essa área é vital para debugar o que o Arduino está transmitindo via porta USB/Serial diretamente para a interface.
+
+
+#### HTML
+<div class="log-area">
+    <h3>Log de Eventos:</h3>
+    <ul id="lista-logs">
+        <li>Aguardando conexão com Arduino (C++)...</li>
+    </ul>
+</div>
+
+- **Finalidade Técnica:** Permite visualizar as strings brutas enviadas pelas funções Serial.print() ou Serial.println() do C++. Isso facilita a validação rápida de:
+
+- Leituras de distância do sensor ultrassônico.
+
+- Mudanças de estado lógico (High/Low) enviadas pelo hardware.
+
+- Confirmação de recebimento de comandos de interrupção.
+
+**Comportamento de Interface:** O log utiliza display: flex com flex-direction: column-reverse (ou uso de prepend no JS) para garantir que o evento mais recente do hardware seja sempre o primeiro da lista, simulando o comportamento de um terminal de depuração profissional.
+
+🛠️ Tabela de Integração Rápida (Para seus colegas de C++)
+Para que o seu Front funcione, os seus colegas que estão programando os sensores precisam saber quais nomes (IDs) você deu aos elementos. Você pode entregar esta tabela para eles
+
+5. Dicionário de Interface (Mapeamento Hardware-Software)
+Para garantir a interoperabilidade entre o firmware (desenvolvido em C++) e a interface de monitoramento, foi estabelecida a seguinte tabela de identificadores. Estes IDs são os pontos de entrada de dados no DOM:
+
+/* ==========================================================================
+   TABELA DE INTEGRAÇÃO: HARDWARE (C++) -> INTERFACE (HTML/JS)
+==========================================================================
+
+| COMPONENTE (C++)     | ID NO HTML       | AÇÃO DO FRONT-END           | ESTILO / CSS        |
+|----------------------|------------------|-----------------------------|---------------------|
+| LED Vermelho         | luz-vermelha     | Ativa brilho de parada      | .vermelho.ativa     |
+| LED Amarelo          | luz-amarela      | Ativa brilho de atenção     | .amarelo.ativa      |
+| LED Verde            | luz-verde        | Ativa brilho de passagem    | .verde.ativa       |
+| Sensor Ultrassônico  | txt-fluxo        | Atualiza valor de tráfego   | Texto Dinâmico      |
+| Sensor de Chuva      | txt-chuva        | Alerta estado climático     | Texto Dinâmico      |
+| Porta Serial         | status-conexao   | Indica conexão física       | .online / .offline  |
+
+==========================================================================
+*/
 
 ## Quick Start
 
@@ -324,8 +397,6 @@ git clone https://github.com/prefeitura/sistema-semaforos-inteligentes.git
 # Entre no diretório
 cd sistema-semaforos-inteligentes
 
-# Suba o ambiente de desenvolvimento
-docker-compose up -d
-
 # Acesse o dashboard
 http://localhost:3000
+*
