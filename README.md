@@ -80,6 +80,110 @@ Este sistema implementa uma arquitetura moderna baseada em:
 - **Frontend**: [ HTML/CSS ]
 - **Monitoramento**: Prometheus, Grafana
 
+## Politicas de segurança
+
+### Padronização de Senhas
+- **Segurança das Senhas:** As senhas devem ser robustas, com pelo menos 12 caracteres, incluindo letras e números, e não devem ser previsíveis, como "123456". 
+- **Troca Regular de Senhas:** As senhas devem ser trocadas a cada 90 dias para evitar vulnerabilidades. 
+- **Autenticação em Dois Fatores (2FA): Utilize 2FA para aumentar a segurança, exigindo um segundo método de verificação. 
+- **Conscientização:** Promova a conscientização sobre a privacidade dos dados e a importância do tratamento adequado dos dados pessoais.
+
+## Padronização de Acessos - Conformidade LGPD
+
+### 1. Classificação de Usuários e Níveis de Acesso
+
+#### 1.1 Perfis de Usuário
+
+**Nível 1 - Visualizador (Read-Only)**
+- **Quem:** Analistas de tráfego, estagiários, auditores externos
+- **Acesso:** Apenas leitura de dashboards e relatórios
+- **Dados pessoais:** NÃO tem acesso a logs com IPs ou dados de operadores
+- **Justificativa LGPD:** Princípio da necessidade (Art. 6º, III)
+
+**Nível 2 - Operador**
+- **Quem:** Operadores de trânsito do dia a dia
+- **Acesso:** Visualização + ajuste de temporizações e perfis
+- **Dados pessoais:** Acesso limitado aos próprios logs de ação
+- **Justificativa LGPD:** Minimização de dados (Art. 6º, III)
+
+**Nível 3 - Técnico de Manutenção**
+- **Quem:** Equipe técnica de campo e remota
+- **Acesso:** Configurações de hardware, firmware, diagnósticos
+- **Dados pessoais:** Logs técnicos (sem dados de cidadãos)
+- **Justificativa LGPD:** Finalidade específica (Art. 6º, I)
+
+**Nível 4 - Supervisor**
+- **Quem:** Coordenadores de operação
+- **Acesso:** Tudo do Nível 2 + relatórios gerenciais + gestão de incidentes
+- **Dados pessoais:** Logs agregados (anonimizados quando possível)
+- **Justificativa LGPD:** Necessidade + legítimo interesse (Art. 7º, IX)
+
+**Nível 5 - Administrador do Sistema**
+- **Quem:** Equipe de TI/DevOps (máximo 3 pessoas)
+- **Acesso:** Acesso total ao sistema, banco de dados, logs completos
+- **Dados pessoais:** Acesso a TODOS os dados (mediante justificativa registrada)
+- **Justificativa LGPD:** Exercício regular de direitos + segurança (Art. 7º, VI e IX)
+
+**Nível 6 - DPO (Data Protection Officer)**
+- **Quem:** Encarregado de dados (1 pessoa designada)
+- **Acesso:** Logs de auditoria, dados de acessos, relatórios de conformidade
+- **Dados pessoais:** Apenas para fins de fiscalização e conformidade
+- **Justificativa LGPD:** Obrigação legal (Art. 41)
+
+---
+
+### 2. Matriz de Permissões por Funcionalidade
+
+| Funcionalidade | Visualizador | Operador | Técnico | Supervisor | Admin | DPO |
+|---------------|--------------|----------|---------|------------|-------|-----|
+| Dashboard em tempo real | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Ajustar temporização | ❌ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| Configurar perfis (pico/noturno) | ❌ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| Acessar configurações IoT | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
+| Atualizar firmware | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
+| Visualizar logs de operação | 🟡 Parcial | 🟡 Próprios | ✅ | ✅ | ✅ | ✅ |
+| Visualizar logs de acesso | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| Exportar dados históricos | ❌ | ❌ | ❌ | 🟡 Anonimizados | ✅ | ✅ |
+| Gerenciar usuários | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| Acessar dados brutos MongoDB | ❌ | ❌ | ❌ | ❌ | ✅ | 🟡 Auditoria |
+| Relatórios de conformidade | ❌ | ❌ | ❌ | ❌ | 🟡 Técnicos | ✅ |
+
+## Políticas de Backup
+
+### Serão incluídos nos backups:
+**Banco de dados MongoDB**
+- Dados de tráfego
+- Logs operacionais
+- Eventos de falha e auditoria
+**Configurações do sistema**
+- Perfis de temporização
+- Configurações IoT
+- Parâmetros de segurança
+**Código da aplicação**
+- Backend
+- Scripts de automação
+**Logs críticos**
+- Logs de acesso
+- Logs de segurança (LGPD)
+
+### Tipos de Backup
+| Tipo                   | Descrição                                                                   |
+| ---------------------- | --------------------------------------------------------------------------- |
+| **Backup Completo**    | Cópia integral de todos os dados e configurações do sistema                 |
+| **Backup Incremental** | Cópia apenas dos dados alterados desde o último backup                      |
+| **Snapshot**           | Registro do estado do sistema em pontos críticos (atualizações, incidentes) |
+
+### Frequência de Backup
+| Item                         | Frequência                                 |
+| ---------------------------- | ------------------------------------------ |
+| **Banco de dados (MongoDB)** | A cada **1 hora**                          |
+| **Logs críticos**            | A cada **30 minutos**                      |
+| **Configurações do sistema** | **Diariamente**                            |
+| **Código da aplicação**      | A cada **commit** (Git)                    |
+| **Backup completo**          | **Diário**                                 |
+| **Snapshot pré-manutenção**  | Antes de atualizações ou mudanças críticas |
+
+
 ## Benefícios Esperados
 
 - **Redução de até 40%** no tempo médio de congestionamento em horários de pico
@@ -185,6 +289,8 @@ Este sistema implementa uma arquitetura moderna baseada em:
 |Custo         |Licença paga (≈ R$ 2.500 por servidor, dependendo da edição) | Gratuito (open source)                  |
 |Segurança     |Boa, com recursos nativos (Defender, AD, GPO)|Excelente, com atualizações frequentes e forte comunidade|
 |Suporte a IOT |Limitado e menos flexível                    |Excelente compatibilidade com MQTT, Docker, Node.js e C++|
+
+## 
 
 ## Quick Start
 
