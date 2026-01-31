@@ -1,5 +1,5 @@
 
-export async function localMode(updateUI) { // 1. Recebe a função de atualizar tela
+export async function localMode(updateUI, timeManager) { // 1. Recebe a função de atualizar tela
     const colors = ["green", "yellow", "red"];
     let currentIndex = 0;
 
@@ -18,8 +18,8 @@ export async function localMode(updateUI) { // 1. Recebe a função de atualizar
 
         currentIndex = (currentIndex + 1) % colors.length;
         
-        setTimeout(changeLight, timeout[currentColor]);
+        timeManager.id = setTimeout(changeLight, timeout[currentColor]);
     }
     
-    changeLight(); // Inicia o loop
+    changeLight();
 }

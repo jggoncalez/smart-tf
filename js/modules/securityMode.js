@@ -1,4 +1,4 @@
-export async function securityMode(updateUI){
+export async function securityMode(updateUI, timeManager){
     // Modo sem sensor
     const colors = ["yellow", "off"];
     let currentIndex = 0;
@@ -16,9 +16,7 @@ export async function securityMode(updateUI){
 
         if (updateUI) updateUI(currentColor);
         
-        setTimeout(changeLight, timeout[currentColor]);
-
-        return currentColor;
+        timeManager.id = setTimeout(changeLight, timeout[currentColor]);
     }
     changeLight();
 }

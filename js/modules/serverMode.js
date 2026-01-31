@@ -1,5 +1,5 @@
 
-export async function serverMode(flow, weather, updateUI) { // Recebe updateUI
+export async function serverMode(flow, weather, updateUI, timeManager) { // Recebe updateUI
     const colors = ["green", "yellow", "red"];
     let greenModifier = 1;
     let yellowModifier = 1;
@@ -8,7 +8,7 @@ export async function serverMode(flow, weather, updateUI) { // Recebe updateUI
     if (flow > 75) {
         greenModifier = 2.5;
     }
-    if (weather == "strong_rain"){
+    if (weather === "strong_rain"){
         yellowModifier = 3;
     }
 
@@ -27,7 +27,7 @@ export async function serverMode(flow, weather, updateUI) { // Recebe updateUI
         
         currentIndex = (currentIndex + 1) % colors.length;
         
-        setTimeout(changeLight, timeout[currentColor]);
+        timeManager.id = setTimeout(changeLight, timeout[currentColor]);
     }
     changeLight();
 }

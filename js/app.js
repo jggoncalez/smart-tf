@@ -17,10 +17,18 @@ let sensor = true; // Simulação de sensor
 const greenLight = document.getElementById('luz-verde');
 const yellowLight = document.getElementById('luz-amarela');
 const redLight = document.getElementById('luz-vermelha');
-
-// const killServerButton = document.querySelector('[kill = "server"]');
-// const killSensorButton = document.querySelector('[kill = "sensor"]');
 const log = document.querySelector('[log="text"]');
+
+let currentTimer = {
+    id: null,
+    stop() {
+        if (this.id !== null){
+            clearTimeout(this.id);
+            this.id = null;
+            console.log("Timer stopped")
+        }
+    }
+}
 
 
 // Função auxiliar para resetar todas as luzes para apagado (cinza)
@@ -47,35 +55,29 @@ function updateTrafficLightUI(color) {
     else if (color === "off") {}
 }
 
-// killServerButton.addEventListener('click', () => {
-//     server = !server;
-//     main();
-// })
-// killSensorButton.addEventListener('click', () => {
-//     sensor = !sensor;
-//     main();
-// })
-
 
 async function main() {
     try {
+
+        currentTimer.stop();
+
         const weatherData = await weather();
         const flowData = await flow();
         let weatherTxt;
 
-        if (weatherData == "clear"){
+        if (weatherData === "clear"){
             weatherTxt = "Ensolarado"
         }
-        else if (weatherData == "light_rain"){
+        else if (weatherData === "light_rain"){
             weatherTxt = "Chuva fraca"
         }
-        else if (weatherData == "strong_rain"){
+        else if (weatherData === "strong_rain"){
             weatherTxt = "Chuva forte"
         } else {
             weatherTxt = "Erro fatal"
         }
         
-        // Atualiza o painel de dados (Opcional, mas visualmente bom)
+        // Atualiza o painel de dados
         if (sensor){
             document.getElementById('txt-fluxo').innerText = `${flowData} %`;
         } else {
@@ -89,23 +91,27 @@ async function main() {
             document.getElementById('status-conexao').classList.replace('offline', 'online');
 
             if (sensor) {
-                // Passamos flow, weather E a função de atualizar a tela
-                await serverMode(flowData, weatherData, updateTrafficLightUI);
                 log.innerText = "SERVIDOR ONLINE: MODO NORMAL"
+                await serverMode(flowData, weatherData, updateTrafficLightUI, currentTimer);
             }
             else {
                 log.innerText = "ERRO: NÃO FOI POSSÍVEL CONECTAR AO SENSOR"
-                await securityMode(updateTrafficLightUI);
+                await securityMode(updateTrafficLightUI, currentTimer);
             }
         } else {
             document.getElementById('status-conexao').innerText = "OFFLINE";
-            await localMode(updateTrafficLightUI);
             log.innerText = "SERVIDOR OFFLINE"
+            await localMode(updateTrafficLightUI, currentTimer);
         }
 
     } catch (error) {
-        console.error('Error in main:', error);
+        console.error('Error in main: ', error);
     }
 }
+
+window.addEventListener('beforeunload', () => {
+    currentTimer.stop();
+    console.log("Current Time Out");
+});
 
 main();
