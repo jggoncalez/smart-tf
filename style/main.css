@@ -1,144 +1,453 @@
+/* ===== VARIÁVEIS CSS (CSS VARIABLES) ===== */
 :root {
-    --bg-color: #1a1a1a;
-    --card-bg: #2d2d2d;
-    --text-color: #f0f0f0;
-    --neon-red: #ff4444;
-    --neon-yellow: #ffbb33;
-    --neon-green: #00c851;
+    /* Cores de fundo */
+    --bg-color: #0a0a0f;
+    --card-bg: #1a1a24;
+    --card-border: #2d2d3d;
+    
+    /* Cores de texto */
+    --text-color: #e8e8f0;
+    --text-secondary: #a0a0b0;
+    
+    /* Cores neon para destaque */
+    --neon-red: #ff3366;
+    --neon-yellow: #ffcc00;
+    --neon-green: #00ff88;
+    
+    /* Efeitos de sombra */
+    --shadow-glow: rgba(255, 255, 255, 0.1);
 }
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+/* ===== RESET GLOBAL (GLOBAL RESET) ===== */
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== ESTILOS DO BODY (BODY STYLES) ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #141420 100%);
+    color: var(--text-color);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    overflow-x: hidden;
 }
 
-h1, h2, h3 { margin-bottom: 10px; }
+/* ===== CABEÇALHO (HEADER) ===== */
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: rgba(26, 26, 36, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+}
 
-/* Layout Principal */
+/* Título principal com gradiente neon */
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--neon-green), var(--neon-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Subtítulo do header */
+header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+}
+
+/* ===== CONTAINER PRINCIPAL (MAIN CONTAINER) ===== */
 .container {
     display: flex;
-    gap: 50px;
-    margin-top: 30px;
+    gap: 3rem;
+    padding: 3rem 2rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
+    flex: 1; /* Ocupa o espaço restante da página */
 }
 
-/* --- O Semáforo --- */
+/* ===== SEMÁFORO (TRAFFIC LIGHT) ===== */
+.semaforo-container {
+    perspective: 1000px; /* Ativa efeito 3D */
+}
+
+/* Estrutura do poste do semáforo */
 .poste {
-    background: #444;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: linear-gradient(180deg, #2a2a3a 0%, #1a1a2a 100%);
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--card-border);
+    transform: rotateY(-5deg); /* Inclinação inicial 3D */
+    transition: transform 0.3s ease;
 }
 
+/* Efeito hover no poste */
+.poste:hover {
+    transform: rotateY(0deg) scale(1.05);
+}
+
+/* Caixa contendo as luzes */
 .caixa-luz {
     background: #000;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    border: 2px solid #555;
+    gap: 1.2rem;
+    border: 3px solid #333;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
+/* Estilos da luz (círculo) ===== */
 .luz {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    background-color: #333; /* Cor desligada */
-    transition: all 0.3s;
-    border: 2px solid #555;
+    /* Gradiente radial para efeito 3D */
+    background: radial-gradient(circle at 30% 30%, #2a2a2a, #1a1a1a);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid #444;
+    position: relative;
+    box-shadow:
+            inset 0 0 20px rgba(0, 0, 0, 0.8),
+            0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Classes para quando a luz acende (brilho) */
-.luz.vermelho.ativa {
-    background-color: var(--neon-red);
-    box-shadow: 0 0 40px var(--neon-red);
-    border-color: #fff;
+/* Brilho reflexivo na luz (pseudo-elemento) */
+.luz::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.luz.amarelo.ativa {
-    background-color: var(--neon-yellow);
-    box-shadow: 0 0 40px var(--neon-yellow);
-    border-color: #fff;
+/* ===== ESTADOS DAS LUZES (LIGHT STATES) ===== */
+
+/* Luz vermelha ativa */
+.luz-vermelha-ativa {
+    background: radial-gradient(circle at 30% 30%, var(--neon-red), #cc0033);
+    box-shadow:
+            0 0 30px var(--neon-red),
+            0 0 60px var(--neon-red),
+            inset 0 0 20px rgba(255, 51, 102, 0.5);
+    border-color: var(--neon-red);
+    animation: pulse-red 1.5s ease-in-out infinite;
 }
 
-.luz.verde.ativa {
-    background-color: var(--neon-green);
-    box-shadow: 0 0 40px var(--neon-green);
-    border-color: #fff;
+/* Luz amarela ativa */
+.luz-amarela-ativa {
+    background: radial-gradient(circle at 30% 30%, var(--neon-yellow), #cc9900);
+    box-shadow:
+            0 0 30px var(--neon-yellow),
+            0 0 60px var(--neon-yellow),
+            inset 0 0 20px rgba(255, 204, 0, 0.5);
+    border-color: var(--neon-yellow);
+    animation: pulse-yellow 1.5s ease-in-out infinite;
 }
 
-/* --- Painel de Dados --- */
+/* Luz verde ativa */
+.luz-verde-ativa {
+    background: radial-gradient(circle at 30% 30%, var(--neon-green), #00cc66);
+    box-shadow:
+            0 0 30px var(--neon-green),
+            0 0 60px var(--neon-green),
+            inset 0 0 20px rgba(0, 255, 136, 0.5);
+    border-color: var(--neon-green);
+    animation: pulse-green 1.5s ease-in-out infinite;
+}
+
+/* Ativa o reflexo brilhante quando a luz está ligada */
+.luz-vermelha-ativa::after,
+.luz-amarela-ativa::after,
+.luz-verde-ativa::after {
+    opacity: 1;
+}
+
+/* ===== ANIMAÇÕES (ANIMATIONS) ===== */
+
+/* Pulsação da luz vermelha */
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 30px var(--neon-red), 0 0 60px var(--neon-red); }
+    50% { box-shadow: 0 0 40px var(--neon-red), 0 0 80px var(--neon-red); }
+}
+
+/* Pulsação da luz amarela */
+@keyframes pulse-yellow {
+    0%, 100% { box-shadow: 0 0 30px var(--neon-yellow), 0 0 60px var(--neon-yellow); }
+    50% { box-shadow: 0 0 40px var(--neon-yellow), 0 0 80px var(--neon-yellow); }
+}
+
+/* Pulsação da luz verde */
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 30px var(--neon-green), 0 0 60px var(--neon-green); }
+    50% { box-shadow: 0 0 40px var(--neon-green), 0 0 80px var(--neon-green); }
+}
+
+/* ===== PAINEL DE DADOS (DATA PANEL) ===== */
 .painel-dados {
-    max-width: 500px;
+    max-width: 550px;
+    width: 100%;
 }
 
+/* Grid para exibir status */
 .status-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
+/* ===== CARDS (CARD STYLES) ===== */
 .card {
     background: var(--card-bg);
-    padding: 15px;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border-radius: 12px;
     text-align: center;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Efeito hover nos cards */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--neon-green);
+}
+
+/* Título do card */
+.card h3 {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Valor exibido no card */
+.card .valor {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* ===== BADGES (STATUS INDICATORS) ===== */
 .badge {
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-weight: bold;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 }
-.badge.online { background: var(--neon-green); color: #000; }
-.badge.offline { background: var(--neon-red); color: #fff; }
 
-/* Botões de Simulação */
+/* Badge para status online */
+.badge.online {
+    background: linear-gradient(135deg, var(--neon-green), #00cc66);
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-green);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Badge para status offline */
+.badge.offline {
+    background: linear-gradient(135deg, var(--neon-red), #cc0033);
+    color: #fff;
+    box-shadow: 0 0 20px var(--neon-red);
+}
+
+/* Animação de pulsação do badge */
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ===== ÁREA DE LOG (LOG AREA) ===== */
+.log-area {
+    background: #000;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Título da área de log */
+.log-area h3 {
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Lista de logs em estilo terminal */
+.log-area ul {
+    list-style: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--neon-green);
+    line-height: 1.8;
+}
+
+/* Item individual do log */
+.log-area li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+/* Remove borda do último item */
+.log-area li:last-child {
+    border-bottom: none;
+}
+
+/* ===== RODAPÉ (FOOTER) ===== */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(26, 26, 36, 0.5);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ===== PAINEL DE CONTROLE/SIMULAÇÃO (CONTROL PANEL) ===== */
 .controles-simulacao {
-    background: #333;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border-left: 5px solid #0099ff;
+    background: linear-gradient(135deg, #2a2a3a 0%, #1a1a2a 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid var(--neon-yellow); /* Indicador visual */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
+/* Efeito hover no painel de controle */
+.controles-simulacao:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Título do painel de controle */
+.controles-simulacao h3 {
+    color: var(--neon-yellow);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Descrição do painel de controle */
+.controles-simulacao p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Container dos botões */
 .botoes {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
 
+/* ===== ESTILOS DOS BOTÕES (BUTTON STYLES) ===== */
 button {
-    padding: 10px;
+    padding: 12px 20px;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.2s;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-button:hover { opacity: 0.8; }
-.btn-warn { background: var(--neon-yellow); color: #000; }
-.btn-info { background: #33b5e5; color: #fff; }
-.btn-danger { background: var(--neon-red); color: #fff; }
+/* Efeito hover nos botões */
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
 
-/* Logs */
-.log-area {
-    background: #000;
-    padding: 10px;
-    height: 150px;
-    overflow-y: auto;
-    border: 1px solid #444;
-    font-family: monospace;
-    font-size: 0.9em;
-    color: #00c851;
+/* Efeito ao clicar */
+button:active {
+    transform: translateY(0);
+}
+
+/* Botão de perigo/stop (vermelho) */
+.btn-danger {
+    background: linear-gradient(135deg, var(--neon-red), #cc0033);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #ff5577, var(--neon-red));
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.5);
+}
+
+/* Botão de sucesso/iniciar (verde) */
+.btn-success {
+    background: linear-gradient(135deg, var(--neon-green), #00cc66);
+    color: #000;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #00ffaa, var(--neon-green));
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+/* Botão de aviso (amarelo) */
+.btn-warn {
+    background: linear-gradient(135deg, var(--neon-yellow), #cc9900);
+    color: #000;
+}
+
+/* Botão de informação (azul) */
+.btn-info {
+    background: linear-gradient(135deg, #33b5e5, #1a8fb3);
+    color: #fff;
+}
+
+/* ===== RESPONSIVIDADE (RESPONSIVE DESIGN) ===== */
+@media (max-width: 768px) {
+    /* Altera layout do container para coluna em telas pequenas */
+    .container {
+        flex-direction: column;
+        padding: 2rem 1rem;
+    }
+
+    /* Reduz tamanho do título em telas pequenas */
+    header h1 {
+        font-size: 2rem;
+    }
+
+    /* Grid de status em coluna única */
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reduz tamanho das luzes do semáforo */
+    .luz {
+        width: 70px;
+        height: 70px;
+    }
 }
