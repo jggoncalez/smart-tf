@@ -117,6 +117,7 @@ async function main() {
         } else {
             // Servidor offline = Modo local
             document.getElementById('status-conexao').innerText = "OFFLINE";
+            document.getElementById('status-conexao').classList.replace('online', 'offline');
             log.innerText = "SERVIDOR OFFLINE"
             await localMode(updateTrafficLightUI, currentTimer);
         }
