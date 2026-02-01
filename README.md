@@ -301,7 +301,7 @@ Este sistema implementa uma arquitetura moderna baseada em:
 │   │   └── weather.js
 │   └── app.js
 ├── style/
-│    ├── Doc_front_1ºversão
+│   ├── Doc_front_1ºversão
 │   └── main.css
 ├── index.html
 └── README.md
