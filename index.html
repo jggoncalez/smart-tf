@@ -9,7 +9,7 @@
 <body>
 
     <header>
-        <h1>🚦 Cruzamento 4.0</h1>
+        <h1>Cruzamento 4.0</h1>
         <p>Monitoramento em Tempo Real</p>
     </header>
 
@@ -17,15 +17,15 @@
         <section class="semaforo-container">
             <div class="poste">
                 <div class="caixa-luz">
-                    <div id="luz-vermelha" class="luz vermelho"></div>
-                    <div id="luz-amarela" class="luz amarelo"></div>
-                    <div id="luz-verde" class="luz verde"></div>
+                    <div id="luz-vermelha" class="luz"></div>
+                    <div id="luz-amarela" class="luz"></div>
+                    <div id="luz-verde" class="luz"></div>
                 </div>
             </div>
         </section>
 
         <section class="painel-dados">
-            
+
             <div class="status-grid">
     <div class="card">
         <h3>Status da Conexão</h3>
@@ -33,7 +33,7 @@
     </div>
     <div class="card">
         <h3>Fluxo (Sensor)</h3>
-        <span id="txt-fluxo">0 v/min</span>
+        <span id="txt-fluxo">0 %</span>
     </div>
     <div class="card">
         <h3>Sensor de Chuva</h3>
@@ -42,26 +42,22 @@
 </div>
 
             <div class="controles-simulacao">
-                <h3>🛜Painel de Status do Hardware</h3>
-                
-                <p>Use os botões abaixo para simular situações:</p>
+                <h3>🛜 Painel de Debug do Hardware</h3>
                 <div class="botoes">
-                    <button onclick="simularNormal()">Modo Normal</button>
-                    <button onclick="simularTransito()" class="btn-warn">Trânsito Intenso</button>
-                    <button onclick="simularChuva()" class="btn-info">Chuva Forte</button>
-                    <button onclick="simularFalha()" class="btn-danger">Falha Crítica</button>
+                    <button kill="server" class="btn-danger"> Desligar Servidor</button>
+                    <button kill="sensor" class="btn-danger"> Desligar Sensor</button>
                 </div>
             </div>
 
             <div class="log-area">
-                <h3>Log de Eventos:</h3>
+                <h3>Modo atual:</h3>
                 <ul id="lista-logs">
-                    <li>Sistema iniciado...</li>
+                    <li log="text">Sistema iniciado...</li>
                 </ul>
             </div>
         </section>
     </main>
 
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>
