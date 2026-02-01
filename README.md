@@ -284,9 +284,24 @@ Este sistema implementa uma arquitetura moderna baseada em:
 ## Estrutura do Projeto
 
 ```
+├── .idea/
+│   ├── inspectionProfiles/
+│       └── Project_Defaut.xml
+│   ├── .gitignore
+│   ├── discord.xml
+│   ├── modules.xml
+│   ├── smart-tf.iml
+│   ├── vcs.xml
 ├── js/
-│   └── main.js
+│   ├── modules/
+│   │   ├── flow.js
+│   │   ├── localMode.js
+│   │   ├── securityMode.js
+│   │   ├── serverMode.js
+│   │   └── weather.js
+│   └── app.js
 ├── style/
+│    ├── Doc_front_1ºversão
 │   └── main.css
 ├── index.html
 └── README.md
