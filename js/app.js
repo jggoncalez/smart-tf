@@ -33,7 +33,7 @@ let currentTimer = {
             console.log("Timer stopped")
         }
     }
-}
+};
 
 // ============================================
 // FUNÇÕES DE CONTROLE DA SEMÁFORO
